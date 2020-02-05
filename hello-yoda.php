@@ -5,7 +5,7 @@
  */
 /*
 Plugin Name: Hello Yoda
-Plugin URI: http://wordpress.org/plugins/hello-yoda/
+Plugin URI: https://github.com/tkrow/Hello-Yoda.git
 Description: A random quote from Yoda will be displayed.
 Author: Timothy Krow
 Version: 1.0.1
