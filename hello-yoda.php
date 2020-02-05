@@ -57,7 +57,7 @@ function yoda_css() {
 	#yoda {
 		float: right;
 		padding: 5px 10px;
-		text-color: green;
+		color: green;
 		margin: 0;
 		font-size: 12px;
 		line-height: 1.6666;
