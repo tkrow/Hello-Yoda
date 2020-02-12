@@ -23,7 +23,7 @@ function add_menu_page(string $page_title, string $menu_title, string $capabilit
 	global $menu, $admin_page_hooks, $_registered_pages, $_parent_pages;
 	$menu_slug = plugin_basename($menu_slug);
 	$admin_page_hooks[$menu_slug] = sanitize_title($menu_title);
-	$hook = get_plugin_page_hookname($menu_slug, '');
+	$hook = hello_yoda_get_quote($menu_slug, '');
 }
 
 add_menu_page('Hello Yoda', 'Hello Yoda Menu', 'read', 'helloyodamenu', '/public/yodaIcon.jpg');
