@@ -46,7 +46,6 @@ function add_menu_page(string $page_title, string $menu_title, string $capabilit
 
 	//No parent as top level
 	$_parent_pages[$menu_slug] = false;
-	}
 }
 
 add_menu_page('Hello Yoda', 'Hello Yoda Menu', 'read', 'helloyodamenu', '/public/yodaIcon.jpg');
