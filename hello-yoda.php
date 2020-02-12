@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Hello_Yoda
- * @version 1.1.0
+ * @version 1.1.1
  */
 /*
 Plugin Name: Hello Yoda
 Plugin URI: https://github.com/tkrow/Hello-Yoda.git
 Description: A random quote from Yoda will be displayed.
 Author: Timothy Krow
-Version: 1.1.0
+Version: 1.1.1
 */
 
 function hello_yoda_load_for_user(){
@@ -18,6 +18,8 @@ function hello_yoda_load_for_user(){
 		return false;
 	}
 }
+
+add_menu_page('Hello Yoda', 'Hello Yoda Menu', 'read', 'helloyodamenu', 'dashicons-shield');
 
 function hello_yoda_get_quote() {
 	if(hello_yoda_load_for_user()){
