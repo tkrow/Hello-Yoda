@@ -19,7 +19,14 @@ function hello_yoda_load_for_user(){
 	}
 }
 
-add_menu_page('Hello Yoda', 'Hello Yoda Menu', 'read', 'helloyodamenu', 'dashicons-shield');
+function add_menu_page(string $page_title, string $menu_title, string $capability, string $menu_slug, string $icon_url){
+	global $menu, $admin_page_hooks, $_registered_pages, $_parent_pages;
+	$menu_slug = plugin_basename($menu_slug);
+	$admin_page_hooks[$menu_slug] = sanitize_title($menu_title);
+	$hook = get_plugin_page_hookname($menu_slug, '');
+}
+
+add_menu_page('Hello Yoda', 'Hello Yoda Menu', 'read', 'helloyodamenu', '/public/yodaIcon.jpg');
 
 function hello_yoda_get_quote() {
 	if(hello_yoda_load_for_user()){
