@@ -23,7 +23,30 @@ function add_menu_page(string $page_title, string $menu_title, string $capabilit
 	global $menu, $admin_page_hooks, $_registered_pages, $_parent_pages;
 	$menu_slug = plugin_basename($menu_slug);
 	$admin_page_hooks[$menu_slug] = sanitize_title($menu_title);
-	$hook = hello_yoda_get_quote($menu_slug, '');
+	$hook = get_plugin_page_hookname($menu_slug, '');
+	if(! empty ($function) && ! empty ($hookname) && current_user_can($capability)){
+		add_action($hookname, $function);
+	}
+	if(empty($icon_url)){
+		$icon_url = 'dashicons-admin-generic';
+		$icon_class = 'menu-icon-generic';
+	} else {
+		$icon_url = set_url_scheme($icon_url);
+		$icon_class = '';
+	}
+	$new_menu = array($menu_title, $capability, $menu_slug, $page_title, 'menu_top'.$icon_class.$hookname,$hookname,$icon_url);
+	if (null === $position){
+		$menu[] = $new_menu;
+	} elseif (isset($menu["position"])){
+		$position = $position + substr(base_convert(md5($menu_slug.$menu_title),16,10),-5)*0.00001;
+	}else{
+		$menu[$position] = $new_menu;
+	}
+	$_registered_pages[$hookname] = true;
+
+	//No parent as top level
+	$_parent_pages[$menu_slug] = false;
+	}
 }
 
 add_menu_page('Hello Yoda', 'Hello Yoda Menu', 'read', 'helloyodamenu', '/public/yodaIcon.jpg');
