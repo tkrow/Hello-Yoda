@@ -24,7 +24,6 @@ function hello_yoda_menu_pages(){
 	add_menu_page('Hello Yoda', 'Yoda', 'read', 'hello-yoda-menu','hello_yoda_menu','dashicons-admin-site-alt3');
 }
 
-add_action('admin_menu', 'hello_yoda_menu');
 function hello_yoda_menu() {
 	echo '<h1>The Hello Yoda Plugin by Timothy Krow</h1>
 		  <p>"Pass on what you have learned."--Yoda</p>';
