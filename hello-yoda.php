@@ -31,7 +31,7 @@ function hello_yoda_menu() {
 
 function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
-		  	<form action="quote.php" method="post">
+		  	<form class="add-quote"action="quote.php" method="post">
 				<p>Quote</p>
 				<input type="text"><br /><br />
 				<p>Quotee</p>
@@ -113,6 +113,9 @@ function yoda_css() {
 	if(hello_yoda_load_for_user()){
 		echo "
 	<style type='text/css'>
+	.add-quote{
+		text-align:center;
+	}
 	#vader {
 		float: right;
 		padding: 5px 10px;
