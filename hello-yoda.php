@@ -31,10 +31,10 @@ function hello_yoda_menu() {
 
 function hello_yoda_add_quote_page(){
 	echo '<h1>Add A Quote</h1>
-		  <form action="quote.php" method="post">';
+		  <form action="quote.php" method="post"></form>';
 }
 
-add_action('admin_menu', 'hello_yoda_add_quote_menu');
+add_action('admin_menu', 'hello_yoda_add_quote_page');
 function hello_yoda_add_quote_menu(){
 	add_submenu_page('hello-yoda-menu', 'Hello Yoda Add Quote', 'Add Quote', 'read', 'hello-yoda-add-quote');
 }
