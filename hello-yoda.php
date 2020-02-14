@@ -29,6 +29,16 @@ function hello_yoda_menu() {
 		  <p>"Pass on what you have learned."--Yoda</p>';
 }
 
+function hello_yoda_add_quote_page(){
+	echo '<h1>Add A Quote</h1>
+		  <form action="quote.php" method="post">';
+}
+
+add_action('admin_menu', 'hello_yoda_add_quote_menu');
+function hello_yoda_add_quote_menu(){
+	add_submenu_page('hello-yoda-menu', 'Hello Yoda Add Quote', 'Add Quote', 'read', 'hello-yoda-add-quote');
+}
+
 function hello_yoda_get_quote() {
 	if(hello_yoda_load_for_user()){
 		/** Vader Quotes */
