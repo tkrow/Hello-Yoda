@@ -34,9 +34,9 @@ function hello_yoda_add_quote_page(){
 		  <form action="quote.php" method="post"></form>';
 }
 
-add_action('admin_menu', 'hello_yoda_add_quote_page');
+add_action('admin_menu', 'hello_yoda_add_quote_menu');
 function hello_yoda_add_quote_menu(){
-	add_submenu_page('hello-yoda-menu', 'Hello Yoda Add Quote', 'Add Quote', 'read', 'hello-yoda-add-quote');
+	add_submenu_page('hello-yoda-menu', 'Hello Yoda Add Quote', 'Add Quote', 'read', 'hello-yoda-add-quote', 'hello_yoda_add_quote_page');
 }
 
 function hello_yoda_get_quote() {
