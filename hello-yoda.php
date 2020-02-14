@@ -29,7 +29,7 @@ add_action('admin_menu', 'hello_yoda_menu');
 function hello_yoda_menu() {
 	add_menu_page(
 		'Hello Yoda',
-		'Hello Yoda Menu',
+		'Yoda',
 		'read',
 		'Hello Yoda Menu'
 		plugin_dir_url(__FILE__).'public\images\yodaIcon.jpg'
