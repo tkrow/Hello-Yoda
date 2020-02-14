@@ -20,7 +20,7 @@ function hello_yoda_load_for_user(){
 }
 
 function hello_yoda_menu_pages(){
-	add_menu_page('Hello Yoda', 'Yoda', 'read', 'hello-yoda-menu','dashicons-admin-site-alt3')
+	add_menu_page('Hello Yoda', 'Yoda', 'read', 'hello-yoda-menu','dashicons-admin-site-alt3');
 }
 
 add_action('admin_menu', 'hello_yoda_menu');
