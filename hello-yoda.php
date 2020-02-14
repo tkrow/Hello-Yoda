@@ -21,7 +21,7 @@ function hello_yoda_load_for_user(){
 
 function hello_yoda_plugin_html(){
 	<div class="wrap">
-		<h1>esc_html(hello_yoda_menu();</h1>
+		<h1>esc_html(hello_yoda_menu());</h1>
 	</div>
 }
 
