@@ -33,9 +33,10 @@ function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
 		  	<form class="add-quote"action="quote.php" method="post">
 				<p>Quote</p>
-				<input type="text"><br /><br />
+				<input type="text"><br /><br /><br />
 				<p>Quotee</p>
-				<input type="text"> 
+				<input type="text"><br /><br /><br />
+				<button type="button">Add Quote</button>
 		  	</form>';
 }
 
