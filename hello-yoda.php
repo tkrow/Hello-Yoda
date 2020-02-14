@@ -30,8 +30,11 @@ function hello_yoda_menu() {
 }
 
 function hello_yoda_add_quote_page(){
-	echo '<h1>Add A Quote</h1>
-		  <form action="quote.php" method="post"></form>';
+	echo '	<h1>Add A Quote</h1>
+		  	<form action="quote.php" method="post">
+				Quote:<input type="text"><br />
+				Quotee:<input type="text"> 
+		  	</form>';
 }
 
 add_action('admin_menu', 'hello_yoda_add_quote_menu');
