@@ -19,21 +19,14 @@ function hello_yoda_load_for_user(){
 	}
 }
 
-function hello_yoda_plugin_html(){
-	<div class="wrap">
-		<h1>esc_html(hello_yoda_menu());</h1>
-	</div>
+function hello_yoda_menu_pages(){
+	add_menu_page('Hello Yoda', 'Yoda', 'read', 'hello-yoda-menu','dashicons-admin-site-alt3')
 }
 
 add_action('admin_menu', 'hello_yoda_menu');
 function hello_yoda_menu() {
-	add_menu_page(
-		'Hello Yoda',
-		'Yoda',
-		'read',
-		'Hello Yoda Menu'
-		plugin_dir_url(__FILE__).'public\images\yodaIcon.jpg'
-	);
+	echo '<h1>The Hello Yoda Plugin by Timothy Krow</h1>
+		  <p>"Pass on what you have learned."--Yoda</p>';
 }
 
 function hello_yoda_get_quote() {
