@@ -14,18 +14,25 @@ Version: 1.2.0
 function hello_yoda_activation(){
 	global $wpdb;
 	$wpdb->query("CREATE TABLE {$wpdb->prefix}hello_yoda_quotes (
-		id int,
+		id int AUTO_INCREMENT NOT NULL,
 		quote LONGTEXT,
-		quotee LONGTEXT)");
+		quotee LONGTEXT,
+		PRIMARY KEY (id))");
 }
 register_activation_hook(__FILE__, 'hello_yoda_activation');
 
 function hello_yoda_quote_submit(){
 	if('POST' === $_SERVER['POST']){
 		global $wpdb;
-		$quote = $_POST['quote'];
-		$quotee = $_POST['quotee'];
-		$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
+		$quote = trim($_POST['quote']);
+		$quotee = trim($_POST['quotee']);
+
+		if($quote = "" || $quotee = ""{
+			echo '<h1>Please do not leave anything blank</h1>'
+		} else {
+
+		}
+		// $wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
 	}
 }
 
@@ -95,6 +102,14 @@ function hello_yoda_get_quote() {
 		//Here we split it into lines
 		$quotes = explode("\n", $quotes);
 
+		global $wpdb;
+		$results = $wpdb->get_results("SELECT quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
+
+		foreach($results as $row){
+			$quote = $row->quote;
+			array_push($quotes, $quote);
+		}
+
 		// Randomly choose a line
 		return wptexturize( $quotes[ mt_rand(0, count( $quotes ) -1 )]);
 	} else {
@@ -120,6 +135,7 @@ function hello_yoda_get_quote() {
 			$quote = $row->quote;
 			array_push($quotes, $quote);
 		}
+
 		// And then randomly choose a line.
 		return wptexturize( $quotes[ mt_rand( 0, count( $quotes ) - 1 ) ] );
 	}
