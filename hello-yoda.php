@@ -40,7 +40,7 @@ function hello_yoda_uninstall(){
 	global $wpdb;
 	$wpdb->query("DROP TABLE {$wpdb->prefix}hello_yoda_quotes");
 }
-register_uninstall_hook(__FILE__, 'hello_yoda_uninstall');
+register_uninstall_hook(__FUNCTION__, 'hello_yoda_uninstall');
 
 function hello_yoda_load_for_user(){
 	if (current_user_can('manage_options')){
