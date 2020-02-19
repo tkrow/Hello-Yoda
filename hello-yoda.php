@@ -32,7 +32,6 @@ function hello_yoda_quote_submit(){
 		} else {
 			// $wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
 		}
-		
 	}
 }
 
@@ -62,7 +61,7 @@ function hello_yoda_menu() {
 
 function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
-		  	<form class="add-quote" action="<?php menu_page_url("hello-yoda-add-quote") ?>" method="post">
+		  	<form class="add-quote" method="post">
 				<p>Quote</p>
 				<input name="quote" id="quote" type="text"><br /><br /><br />
 				<p>Quotee</p>
