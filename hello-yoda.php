@@ -28,7 +28,7 @@ function hello_yoda_quote_submit(){
 		$quotee = trim($_POST['quotee']);
 
 		if($quote == "" || $quotee == ""){
-			echo '<script>alert("Please do not leave any text box blank.");</script>';
+			echo '';
 		} else {
 			// $wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
 		}
