@@ -61,7 +61,7 @@ function hello_yoda_menu() {
 
 function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
-		  	<form action="hello-yoda-add-quote" method="post">
+		  	<form class="add-quote" action="hello-yoda-add-quote" method="post">
 				<p>Quote</p>
 				<input name="quote" id="quote" type="text"><br /><br /><br />
 				<p>Quotee</p>
