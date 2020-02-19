@@ -74,7 +74,7 @@ if(!function_exists('hello_yoda_add_quote_menu')){
 			'hello_yoda_add_quote_page'
 		);
 		remove_submenu_page('hello-yoda-menu','hello-yoda-menu');
-	add_action('load-' . $hookname, 'hello_yoda_quote_submit');)
+	add_action('load-' . $hookname, 'hello_yoda_quote_submit');
 	}
 	add_action('admin_menu', 'hello_yoda_add_quote_menu');
 }
