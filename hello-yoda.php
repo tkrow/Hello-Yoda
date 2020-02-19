@@ -28,7 +28,7 @@ function hello_yoda_quote_submit(){
 		$quotee = trim($_POST['quotee']);
 
 		if($quote = "" || $quotee = ""{
-			echo '<h1>Please do not leave anything blank</h1>'
+			echo '<h1>Please do not leave anything blank</h1>';
 		} else {
 
 		}
