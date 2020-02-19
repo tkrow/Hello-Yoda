@@ -114,7 +114,7 @@ function hello_yoda_get_quote() {
 		$quotes = explode( "\n", $quotes );
 	
 		global $wpdb;
-		$results = $wpdb->get_results("SELECT quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda&+%'");
+		$results = $wpdb->get_results("SELECT quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
 
 		foreach($results as $row){
 			$quote = $row->quote;
