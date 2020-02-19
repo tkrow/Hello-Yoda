@@ -22,7 +22,7 @@ function hello_yoda_activation(){
 register_activation_hook(__FILE__, 'hello_yoda_activation');
 
 function hello_yoda_quote_submit(){
-	if('POST' === $_SERVER['POST']){
+	if('POST' === $_SERVER['REQUEST_METHOD']){
 		global $wpdb;
 		$quote = trim($_POST['quote']);
 		$quotee = trim($_POST['quotee']);
@@ -30,9 +30,9 @@ function hello_yoda_quote_submit(){
 		if($quote == "" || $quotee == ""){
 			echo '<h1>Please do not leave anything blank</h1>';
 		} else {
-
+			// $wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
 		}
-		// $wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
+		
 	}
 }
 
@@ -40,7 +40,7 @@ function hello_yoda_uninstall(){
 	global $wpdb;
 	$wpdb->query("DROP TABLE {$wpdb->prefix}hello_yoda_quotes");
 }
-register_uninstall_hook(__FUNCTION__, 'hello_yoda_uninstall');
+register_uninstall_hook(__FILE__, 'hello_yoda_uninstall');
 
 function hello_yoda_load_for_user(){
 	if (current_user_can('manage_options')){
