@@ -1,15 +1,39 @@
 <?php
 /**
  * @package Hello_Yoda
- * @version 1.1.1
+ * @version 1.2.0
  */
 /*
 Plugin Name: Hello Yoda
 Plugin URI: https://github.com/tkrow/Hello-Yoda.git
 Description: A random quote from Yoda will be displayed.
 Author: Timothy Krow
-Version: 1.1.1
+Version: 1.2.0
 */
+
+function hello_yoda_activation(){
+	global $wpdb;
+	$wpdb->query("CREATE TABLE {$wpdb->prefix}hello_yoda_quotes (
+		id int,
+		quote LONGTEXT,
+		quotee LONGTEXT)");
+}
+register_activation_hook(__FILE__, 'hello_yoda_activation');
+
+function hello_yoda_quote_submit(){
+	if('POST' === $_SERVER['POST']){
+		global $wpdb;
+		$quote = $_POST['quote'];
+		$quotee = $_POST['quotee'];
+		$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
+	}
+}
+
+function hello_yoda_uninstall(){
+	global $wpdb;
+	$wpdb->query("DROP TABLE {$wpdb->prefix}hello_yoda_quotes");
+}
+register_uninstall_hook(__FILE__, 'hello_yoda_uninstall');
 
 function hello_yoda_load_for_user(){
 	if (current_user_can('manage_options')){
@@ -31,19 +55,33 @@ function hello_yoda_menu() {
 
 function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
-		  	<form class="add-quote"action="quote.php" method="post">
+		  	<form class="add-quote" action="<?php menu_page_url('hello-yoda-add-quote') ?>" method="post">
 				<p>Quote</p>
-				<input type="text"><br /><br /><br />
+				<input name="quote" id="quote" type="text"><br /><br /><br />
 				<p>Quotee</p>
-				<input type="text"><br /><br /><br />
+				<input name="quotee" id="quotee" type="text"><br /><br /><br />
 				<button type="button">Add Quote</button>
 		  	</form>';
 }
 
-add_action('admin_menu', 'hello_yoda_add_quote_menu');
-function hello_yoda_add_quote_menu(){
-	add_submenu_page('hello-yoda-menu', 'Hello Yoda Add Quote', 'Add Quote', 'read', 'hello-yoda-add-quote', 'hello_yoda_add_quote_page');
+if(!function_exists('hello_yoda_add_quote_menu')){
+	function hello_yoda_add_quote_menu(){
+		$hookname = add_submenu_page(
+			'hello-yoda-menu', 
+			'Hello Yoda Add Quote', 
+			'Add Quote', 'read', 
+			'hello-yoda-add-quote', 
+			'hello_yoda_add_quote_page'
+		);
+		remove_submenu_page('hello-yoda-menu','hello-yoda-menu');
+	add_action('load-' . $hookname, 'hello_yoda_quote_submit');)
+	}
+	add_action('admin_menu', 'hello_yoda_add_quote_menu');
 }
+
+
+
+
 
 function hello_yoda_get_quote() {
 	if(hello_yoda_load_for_user()){
@@ -75,6 +113,13 @@ function hello_yoda_get_quote() {
 		// Here we split it into lines.
 		$quotes = explode( "\n", $quotes );
 	
+		global $wpdb;
+		$results = $wpdb->get_results("SELECT quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda&+%'");
+
+		foreach($results as $row){
+			$quote = $row->quote;
+			array_push($quotes, $quote);
+		}
 		// And then randomly choose a line.
 		return wptexturize( $quotes[ mt_rand( 0, count( $quotes ) - 1 ) ] );
 	}
