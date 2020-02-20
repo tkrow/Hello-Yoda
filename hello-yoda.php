@@ -26,19 +26,19 @@ register_activation_hook(__FILE__, 'hello_yoda_activation');
 function hello_yoda_quote_submit(){
 	if('POST' === $_SERVER['REQUEST_METHOD']){
 		global $wpdb;
-		$quote = trim($_POST['quote']);
-		$quotee = trim($_POST['quotee']);
-
-		$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");				
+		$quote = sanitize_text_field($_POST['quote']);
+		$quotee = sanitize_text_field($_POST['quotee']);
+		
+		$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (quote, quotee) VALUES ('$quote','$quotee')");				
 	}
 }
 
 //Delete the table when plugin is uninstalled
-function hello_yoda_uninstall(){
+/*function hello_yoda_uninstall(){
 	global $wpdb;
 	$wpdb->query("DROP TABLE {$wpdb->prefix}hello_yoda_quotes");
 }
-register_uninstall_hook(__FILE__, 'hello_yoda_uninstall');
+register_uninstall_hook(__FILE__, 'hello_yoda_uninstall');*/
 
 // determine what the user's permission is
 function hello_yoda_load_for_user(){
@@ -64,7 +64,7 @@ function hello_yoda_menu() {
 //HTML output to build subpage
 function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
-		  	<form class="add-quote" action="<?php menu_page_url('hello-yoda-add-quote')" method="post">
+		  	<form class="add-quote" action="" method="post">
 				<p>Quote</p>
 				<input name="quote" id="quote" type="text"><br /><br /><br />
 				<p>Quotee</p>
