@@ -33,13 +33,6 @@ function hello_yoda_quote_submit(){
 	}
 }
 
-//Delete the table when plugin is uninstalled
-/*function hello_yoda_uninstall(){
-	global $wpdb;
-	$wpdb->query("DROP TABLE {$wpdb->prefix}hello_yoda_quotes");
-}
-register_uninstall_hook(__FILE__, 'hello_yoda_uninstall');*/
-
 // determine what the user's permission is
 function hello_yoda_load_for_user(){
 	if (current_user_can('manage_options')){
@@ -69,7 +62,7 @@ function hello_yoda_add_quote_page(){
 				<input name="quote" id="quote" type="text"><br /><br /><br />
 				<p>Quotee</p>
 				<input name="quotee" id="quotee" type="text"><br /><br /><br />
-				<button type="button">Add Quote</button>
+				<input type="submit">
 		  	</form>';
 }
 
