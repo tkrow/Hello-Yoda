@@ -29,7 +29,9 @@ function hello_yoda_quote_submit(){
 		$quote = sanitize_text_field($_POST['quote']);
 		$quotee = sanitize_text_field($_POST['quotee']);
 		
-		$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (quote, quotee) VALUES ('$quote','$quotee')");				
+		if($quote != "" || $quotee != ""){
+			$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (quote, quotee) VALUES ('$quote','$quotee')");		
+		}		
 	}
 }
 
