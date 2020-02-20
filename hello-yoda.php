@@ -11,34 +11,36 @@ Author: Timothy Krow
 Version: 1.2.0
 */
 
+//On activiation, create the hello_yoda_quotes table
 function hello_yoda_activation(){
 	global $wpdb;
 	$wpdb->query("CREATE TABLE {$wpdb->prefix}hello_yoda_quotes (
-		id int AUTO_INCREMENT NOT NULL,
+		id BIGINT AUTO_INCREMENT NOT NULL,
 		quote LONGTEXT,
 		quotee LONGTEXT,
 		PRIMARY KEY (id))");
 }
 register_activation_hook(__FILE__, 'hello_yoda_activation');
 
+//Insert quote if neither box is empty and the button is pressed
 function hello_yoda_quote_submit(){
 	if('POST' === $_SERVER['REQUEST_METHOD']){
 		global $wpdb;
-		$quote = $_POST['quote'];
-		$quotee = $_POST['quotee'];
+		$quote = trim($_POST['quote']);
+		$quotee = trim($_POST['quotee']);
 
-		if($quote == "" || $quotee == ""){
-			$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
-		}			
+		$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");				
 	}
 }
 
+//Delete the table when plugin is uninstalled
 function hello_yoda_uninstall(){
 	global $wpdb;
 	$wpdb->query("DROP TABLE {$wpdb->prefix}hello_yoda_quotes");
 }
 register_uninstall_hook(__FILE__, 'hello_yoda_uninstall');
 
+// determine what the user's permission is
 function hello_yoda_load_for_user(){
 	if (current_user_can('manage_options')){
 		return true;
@@ -47,19 +49,22 @@ function hello_yoda_load_for_user(){
 	}
 }
 
+//add the main menu page
 add_action('admin_menu','hello_yoda_menu_pages');
 function hello_yoda_menu_pages(){
 	add_menu_page('Hello Yoda', 'Yoda', 'read', 'hello-yoda-menu','hello_yoda_menu','dashicons-admin-site-alt3');
 }
 
+//HTML output to build the page
 function hello_yoda_menu() {
 	echo '<h1>The Hello Yoda Plugin by Timothy Krow</h1>
 		  <p>"Pass on what you have learned."--Yoda</p>';
 }
 
+//HTML output to build subpage
 function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
-		  	<form class="add-quote" action="hello-yoda-add-quote" method="post">
+		  	<form class="add-quote" action="<?php menu_page_url('hello-yoda-add-quote')" method="post">
 				<p>Quote</p>
 				<input name="quote" id="quote" type="text"><br /><br /><br />
 				<p>Quotee</p>
@@ -68,6 +73,7 @@ function hello_yoda_add_quote_page(){
 		  	</form>';
 }
 
+//add the subpage to the menu bar
 if(!function_exists('hello_yoda_add_quote_menu')){
 	function hello_yoda_add_quote_menu(){
 		$hookname = add_submenu_page(
