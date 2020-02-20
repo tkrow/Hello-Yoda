@@ -30,7 +30,7 @@ function hello_yoda_quote_submit(){
 		$quotee = sanitize_text_field($_POST['quotee']);
 		
 		if($quote != "" || $quotee != ""){
-			$wpdb->query( $wpdb->prepare()
+			$wpdb->query( $wpdb->prepare(
 				"INSERT INTO {$wpdb->prefix}hello_yoda_quotes 
 				(quote, quotee) 
 				VALUES (%s, %s)",
