@@ -24,8 +24,8 @@ register_activation_hook(__FILE__, 'hello_yoda_activation');
 function hello_yoda_quote_submit(){
 	if('POST' === $_SERVER['REQUEST_METHOD']){
 		global $wpdb;
-		$quote = trim($_POST['quote']);
-		$quotee = trim($_POST['quotee']);
+		$quote = $_POST['quote'];
+		$quotee = $_POST['quotee'];
 
 		if($quote == "" || $quotee == ""){
 			$wpdb->query("INSERT INTO {$wpdb->prefix}hello_yoda_quotes (id, quote, quotee) VALUES (1, '$quote','$quotee')");
