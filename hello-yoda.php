@@ -21,6 +21,23 @@ function hello_yoda_activation(){
 }
 register_activation_hook(__FILE__, 'hello_yoda_activation');
 
+//prints database query results depending on user's permissions
+function hello_yoda_display_quote(){
+	global $wpdb;
+
+	if(hello_yoda_load_for_user){
+		$result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
+		foreach($results as $item){
+			echo $item;
+		}
+	} else {
+		$result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
+		foreach($results as $item){
+			echo $item;
+		}
+	}
+}
+
 //Insert quote if neither box is empty and the button is pressed
 function hello_yoda_quote_submit(){
 	if('POST' === $_SERVER['REQUEST_METHOD']){
@@ -98,6 +115,8 @@ function hello_yoda_remove_quote_page(){
 				<p>Quote ID</p>
 				<input name="id" id="id" type="number"><br /><br /><br />
 				<input type="submit">
+				<br /><br /><br /><br /><br />
+
 		  	</form>';
 }
 
