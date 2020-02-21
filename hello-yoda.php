@@ -62,10 +62,36 @@ function hello_yoda_menu() {
 		  <p>"Pass on what you have learned."--Yoda</p>';
 }
 
-//HTML output to build subpage
+//add the remove quote subpage to the menu bar
+if(!function_exists('hello_yoda_remove_quote_menu')){
+	function hello_yoda_remove_quote_menu(){
+		$hookname = add_submenu_page(
+			'hello-yoda-menu', 
+			'Hello Yoda Remove Quote', 
+			'Remove Quote', 'read', 
+			'hello-yoda-remove-quote', 
+			'hello_yoda_remove_quote_page'
+		);
+		remove_submenu_page('hello-yoda-menu','hello-yoda-menu');
+	add_action('load-' . $hookname, 'hello_yoda_quote_remove_submit');
+	}
+	add_action('admin_menu', 'hello_yoda_remove_quote_menu');
+}
+
+//HTML output to build remove quote subpage
+function hello_yoda_remove_quote_page(){
+	echo '	<h1>Remove A Quote</h1>
+		  	<form class="quote" action="" method="post">
+				<p>Quote ID</p>
+				<input name="id" id="id" type="number"><br /><br /><br />
+				<input type="submit">
+		  	</form>';
+}
+
+//HTML output to build add quote subpage
 function hello_yoda_add_quote_page(){
 	echo '	<h1>Add A Quote</h1>
-		  	<form class="add-quote" action="" method="post">
+		  	<form class="quote" action="" method="post">
 				<p>Quote</p>
 				<input name="quote" id="quote" type="text"><br /><br /><br />
 				<p>Quotee</p>
@@ -74,7 +100,7 @@ function hello_yoda_add_quote_page(){
 		  	</form>';
 }
 
-//add the subpage to the menu bar
+//add the add quote subpage to the menu bar
 if(!function_exists('hello_yoda_add_quote_menu')){
 	function hello_yoda_add_quote_menu(){
 		$hookname = add_submenu_page(
@@ -179,7 +205,7 @@ function yoda_css() {
 	if(hello_yoda_load_for_user()){
 		echo "
 	<style type='text/css'>
-	.add-quote{
+	.quote{
 		text-align:center;
 	}
 	#vader {
