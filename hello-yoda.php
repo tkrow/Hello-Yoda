@@ -46,7 +46,7 @@ function hello_yoda_quote_remove(){
 		global $wpdb;
 		$id = sanitize_text_field($_POST['id']);
 
-		if($quote != ""){
+		if($id != ""){
 			$wpdb->query($wpdb->prepare(
 				"DELETE * FROM {$wpdb->prefix}hello_yoda_quotes WHERE id = %i", $id
 			));
