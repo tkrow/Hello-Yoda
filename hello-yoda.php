@@ -116,8 +116,8 @@ function hello_yoda_remove_quote_page(){
 				<input name="id" id="id" type="number"><br /><br /><br />
 				<input type="submit">
 				<br /><br /><br /><br /><br />
-
-		  	</form>';
+			  </form>';
+	echo hello_yoda_display_quote();
 }
 
 //HTML output to build add quote subpage
