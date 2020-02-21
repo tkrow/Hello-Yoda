@@ -48,7 +48,7 @@ function hello_yoda_quote_remove(){
 
 		if($id != ""){
 			$wpdb->query($wpdb->prepare(
-				"DELETE FROM {$wpdb->prefix}hello_yoda_quotes WHERE id = %i", $id
+				"DELETE FROM {$wpdb->prefix}hello_yoda_quotes WHERE id = $id"
 			));
 		}
 	}
