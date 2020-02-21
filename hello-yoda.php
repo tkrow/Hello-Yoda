@@ -34,7 +34,7 @@ function hello_yoda_load_for_user(){
 function hello_yoda_display_quote(){
 	global $wpdb;
 
-	if(hello_yoda_load_for_user){
+	if(hello_yoda_load_for_user()){
 		$result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
 		foreach($results as $item){
 			echo $item;
