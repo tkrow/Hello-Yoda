@@ -21,6 +21,15 @@ function hello_yoda_activation(){
 }
 register_activation_hook(__FILE__, 'hello_yoda_activation');
 
+// determine what the user's permission is
+function hello_yoda_load_for_user(){
+	if (current_user_can('manage_options')){
+		return true;
+	} else {
+		return false;
+	}
+}
+
 //prints database query results depending on user's permissions
 function hello_yoda_display_quote(){
 	global $wpdb;
@@ -68,15 +77,6 @@ function hello_yoda_quote_remove(){
 				"DELETE FROM {$wpdb->prefix}hello_yoda_quotes WHERE id = '%d'", $id
 			));
 		}
-	}
-}
-
-// determine what the user's permission is
-function hello_yoda_load_for_user(){
-	if (current_user_can('manage_options')){
-		return true;
-	} else {
-		return false;
 	}
 }
 
