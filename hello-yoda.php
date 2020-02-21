@@ -1,14 +1,13 @@
 <?php
 /**
  * @package Hello_Yoda
- * @version 1.2.0
- */
+ * @version 1.2.2 */
 /*
 Plugin Name: Hello Yoda
 Plugin URI: https://github.com/tkrow/Hello-Yoda.git
 Description: A random quote from Yoda will be displayed.
 Author: Timothy Krow
-Version: 1.2.0
+Version: 1.2.2
 */
 
 //On activiation, create the hello_yoda_quotes table
@@ -38,6 +37,20 @@ function hello_yoda_quote_submit(){
 				$quotee
 				) );		
 		}		
+	}
+}
+
+//Remove quote that is specified
+function hello_yoda_quote_remove(){
+	if('POST' === $_SERVER['REQUEST_METHOD']){
+		global $wpdb;
+		$id = sanitize_text_field($_POST['id']);
+
+		if($quote != ""){
+			$wpdb->query($wpdb->prepare(
+				"DELETE * FROM {$wpdb->prefix}hello_yoda_quotes WHERE id = %i", $id
+			));
+		}
 	}
 }
 
@@ -73,7 +86,7 @@ if(!function_exists('hello_yoda_remove_quote_menu')){
 			'hello_yoda_remove_quote_page'
 		);
 		remove_submenu_page('hello-yoda-menu','hello-yoda-menu');
-	add_action('load-' . $hookname, 'hello_yoda_quote_remove_submit');
+	add_action('load-' . $hookname, 'hello_yoda_quote_remove');
 	}
 	add_action('admin_menu', 'hello_yoda_remove_quote_menu');
 }
