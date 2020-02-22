@@ -271,6 +271,9 @@ function yoda_css() {
 	} else {
 		echo "
 	<style type='text/css'>
+	.quote{
+		text-align:center;
+	}
 	#yoda {
 		float: right;
 		padding: 5px 10px;
