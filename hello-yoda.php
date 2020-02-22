@@ -37,12 +37,12 @@ function hello_yoda_display_quote(){
 	if(hello_yoda_load_for_user()){
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
 		foreach($results as $item){
-			echo $item['id'];
+			echo $results;
 		}
 	} else {
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
 		foreach($results as $item){
-			echo $item['id'];
+			echo $results;
 		}
 	}
 }
