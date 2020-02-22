@@ -33,17 +33,26 @@ function hello_yoda_load_for_user(){
 //prints database query results depending on user's permissions
 function hello_yoda_display_quote(){
 	global $wpdb;
+	$resultItems;
 
 	if(hello_yoda_load_for_user()){
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
 		foreach($results as $item){
-			echo $results;
+			$result = $item->result;
+			array_push($resultItems, $result);
 		}
+		echo "<pre>";
+		print_r($resultItems);
+		echo "</pre>";
 	} else {
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
 		foreach($results as $item){
-			echo $results;
+			$result = $item->result;
+			array_push($resultItems, $result);
 		}
+		echo "<pre>";
+		print_r($resultItems);
+		echo "</pre>";
 	}
 }
 
