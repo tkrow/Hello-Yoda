@@ -36,22 +36,17 @@ function hello_yoda_display_quote(){
 	$resultItems = array();
 
 	if(hello_yoda_load_for_user()){
-		$results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
-		foreach($results as $row){
-			$result = $row->result;
-			array_push($resultItems, $result);
+		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
+		$result = mysql_query($results) or die(mysql_error());
+		while($row = mysql_fetch_assoc($result)){
+			foreach($row as $cname => $cvalue){
+				echo "$cname: $cvalue\t";
+			}
 		}
 	} else {
-		$results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
-		foreach($results as $row){
-			$result = $row->result;
-			array_push($resultItems, $result);
-		}
+		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
+	
 	}
-
-	echo "<pre>";
-	print_r($resultItems);
-	echo "</pre>";
 }
 
 //Insert quote if neither box is empty and the button is pressed
