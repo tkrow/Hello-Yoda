@@ -38,11 +38,16 @@ function hello_yoda_display_quote(){
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
 		echo '<div class="quote">';
 		foreach($results as $item){
-			echo $item->id . '|' . $item->quotee . '|' . $item->quote;
+			echo $item->id . '    |    ' . $item->quotee . '    |    ' . $item->quote . '<br />';
 		}
 		echo '</div>';
 	} else {
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
+		echo '<div class="quote">';
+		foreach($results as $item){
+			echo $item->id . '    |    ' . $item->quotee . '    |    ' . $item->quote . '<br />';
+		}
+		echo '</div>';
 	}
 }
 
