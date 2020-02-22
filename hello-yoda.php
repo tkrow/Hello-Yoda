@@ -35,14 +35,14 @@ function hello_yoda_display_quote(){
 	global $wpdb;
 
 	if(hello_yoda_load_for_user()){
-		$results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
+		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
 		foreach($results as $item){
-			echo $item['*'];
+			echo $item['id'];
 		}
 	} else {
-		$results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
+		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
 		foreach($results as $item){
-			echo $item['*'];
+			echo $item['id'];
 		}
 	}
 }
