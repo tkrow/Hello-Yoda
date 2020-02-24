@@ -49,7 +49,7 @@ function hello_yoda_display_quote(){
 			echo	'<td>' . $item->quotee . '</td>';
 			echo	'<td>' . $item->quote . '</td>';
 			echo '</tr>';
-			}
+		}
 		echo '</table>
 			  </div>';
 	} else {
@@ -67,6 +67,7 @@ function hello_yoda_display_quote(){
 			echo	'<td>' . $item->quotee . '</td>';
 			echo	'<td>' . $item->quote . '</td>';
 			echo '</tr>';
+		}
 		echo '</table>
 			  </div>';
 	}
