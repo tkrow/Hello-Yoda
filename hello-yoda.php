@@ -36,18 +36,24 @@ function hello_yoda_display_quote(){
 
 	if(hello_yoda_load_for_user()){
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
-		echo '<div class="quote">';
+		echo '<div class="quote">
+				<table style = "width:100%">';
 		foreach($results as $item){
-			echo $item->id . ' | ' . $item->quotee . ' | ' . $item->quote . '<br />';
+			echo '<th>' . $item->id . '</th>'
+				 '<th>' . $item->quotee . '</th>'
+				 '<th>' . $item->quote . '</th>'
 		}
 		echo '</div>';
 	} else {
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
 		echo '<div class="quote">';
 		foreach($results as $item){
-			echo $item->id . ' | ' . $item->quotee . ' | ' . $item->quote . '<br />';
+			echo '<th>' . $item->id . '</th>'
+				 '<th>' . $item->quotee . '</th>'
+				 '<th>' . $item->quote . '</th>'
 		}
-		echo '</div>';
+		echo '</table>
+			  </div>';
 	}
 }
 
@@ -238,7 +244,6 @@ add_action( 'admin_notices', 'hello_yoda' );
 
 // We need some CSS to position the paragraph.
 function yoda_css() {
-	if(hello_yoda_load_for_user()){
 		echo "
 	<style type='text/css'>
 	.quote{
@@ -255,25 +260,6 @@ function yoda_css() {
 	.rtl #vader {
 		float: left;
 	}
-	.block-editor-page #yoda {
-		display: none;
-	}
-	@media screen and (max-width: 782px) {
-		#vader,
-		.rtl #vader {
-			float: none;
-			padding-left: 0;
-			padding-right: 0;
-		}
-	}
-	</style>
-	";
-	} else {
-		echo "
-	<style type='text/css'>
-	.quote{
-		text-align:center;
-	}
 	#yoda {
 		float: right;
 		padding: 5px 10px;
@@ -289,8 +275,8 @@ function yoda_css() {
 		display: none;
 	}
 	@media screen and (max-width: 782px) {
-		#yoda,
-		.rtl #yoda {
+		#vader,
+		.rtl #vader {
 			float: none;
 			padding-left: 0;
 			padding-right: 0;
@@ -298,7 +284,5 @@ function yoda_css() {
 	}
 	</style>
 	";
-	}	
 }
-
 add_action( 'admin_head', 'yoda_css' );
