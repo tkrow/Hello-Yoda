@@ -268,12 +268,18 @@ function yoda_css() {
 	.table-yoda{
 		color: green;
 		border: 1px solid green;
-  		border-collapse: collapse;
+		border-collapse: collapse;
+		width: 100%;
+		text-align: left;
+  		padding: 8px;
 	}
 	.table-vader{
 		color: red;
 		border: 1px solid red;
-  		border-collapse: collapse;
+		border-collapse: collapse;
+		width: 100%;
+		text-align: left;
+  		padding: 8px;
 	}
 	#vader {
 		float: right;
