@@ -265,8 +265,10 @@ function yoda_css() {
 		text-align:center;
 	}
 	.table-yoda{
+		color: green;
 	}
 	.table-vader{
+		color: red;
 	}
 	#vader {
 		float: right;
