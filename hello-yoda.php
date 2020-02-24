@@ -267,12 +267,12 @@ function yoda_css() {
 	}
 	.table-yoda{
 		color: green;
-		border: 1px solid black;
+		border: 1px solid green;
   		border-collapse: collapse;
 	}
 	.table-vader{
 		color: red;
-		border: 1px solid black;
+		border: 1px solid red;
   		border-collapse: collapse;
 	}
 	#vader {
