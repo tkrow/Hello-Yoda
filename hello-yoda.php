@@ -36,7 +36,7 @@ function hello_yoda_display_quote(){
 
 	if(hello_yoda_load_for_user()){
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
-		echo '<div class="quote">
+		echo '<div class="quote" style="width: 50%; margin: 0 auto;">
 				<table class="table-vader">
 					<tr>
 						<th>ID</th>
@@ -54,7 +54,7 @@ function hello_yoda_display_quote(){
 			  </div>';
 	} else {
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
-		echo '<div class="quote">
+		echo '<div class="quote" style="width: 50%; margin: 0 auto;">
 				<table class="table-yoda">
 					<tr>
 						<th>ID</th>
@@ -267,18 +267,16 @@ function yoda_css() {
 	}
 	.table-yoda{
 		color: green;
-		border: 1px solid green;
+		border: 2px solid green;
 		border-collapse: collapse;
 		width: 100%;
-		text-align: left;
   		padding: 8px;
 	}
 	.table-vader{
 		color: red;
-		border: 1px solid red;
+		border: 2px solid red;
 		border-collapse: collapse;
 		width: 100%;
-		text-align: left;
   		padding: 8px;
 	}
 	#vader {
