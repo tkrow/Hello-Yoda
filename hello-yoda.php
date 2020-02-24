@@ -41,7 +41,7 @@ function hello_yoda_display_quote(){
 		foreach($results as $item){
 			echo '<th> . $item->id . </th>
 				  <th> . $item->quotee . </th>
-				  <th> . $item->quote . </th>'
+				  <th> . $item->quote . </th>';
 			}
 		echo '</table>
 			  </div>';
@@ -52,7 +52,7 @@ function hello_yoda_display_quote(){
 		foreach($results as $item){
 			echo '<th> . $item->id . </th>
 				  <th> . $item->quotee . </th>
-				  <th> . $item->quote . </th>'
+				  <th> . $item->quote . </th>';
 		}
 		echo '</table>
 			  </div>';
