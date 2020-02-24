@@ -37,23 +37,37 @@ function hello_yoda_display_quote(){
 	if(hello_yoda_load_for_user()){
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%vader%'");
 		echo '<div class="quote">
-				<table style = "width:100%">';
+				<table style = "width:100%">
+					<tr>
+						<th>ID</th>
+						<th>Quotee</th>
+						<th>Quote</th>
+					</tr>';
 		foreach($results as $item){
-			echo '<th> . $item->id . </th>
-				  <th> . $item->quotee . </th>
-				  <th> . $item->quote . </th>';
+			echo '<tr>
+				  	<td> . $item->id . </td>
+				  	<td> . $item->quotee . </td>
+				  	<td> . $item->quote . </td>
+				  </tr>';
 			}
 		echo '</table>
 			  </div>';
 	} else {
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
 		echo '<div class="quote">
-				<table style = "width:100%">';
+				<table style = "width:100%">
+					<tr>
+						<th>ID</th>
+						<th>Quotee</th>
+						<th>Quote</th>
+					</tr>';
 		foreach($results as $item){
-			echo '<th> . $item->id . </th>
-				  <th> . $item->quotee . </th>
-				  <th> . $item->quote . </th>';
-		}
+			echo '<tr>
+				  	<td> . $item->id . </td>
+				  	<td> . $item->quotee . </td>
+				  	<td> . $item->quote . </td>
+				  </tr>';
+			}
 		echo '</table>
 			  </div>';
 	}
