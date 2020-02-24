@@ -39,18 +39,20 @@ function hello_yoda_display_quote(){
 		echo '<div class="quote">
 				<table style = "width:100%">';
 		foreach($results as $item){
-			echo '<th>' . $item->id . '</th>'
-				 '<th>' . $item->quotee . '</th>'
-				 '<th>' . $item->quote . '</th>'
-		}
-		echo '</div>';
+			echo '<th> . $item->id . </th>
+				  <th> . $item->quotee . </th>
+				  <th> . $item->quote . </th>'
+			}
+		echo '</table>
+			  </div>';
 	} else {
 		$results = $wpdb->get_results("SELECT id, quotee, quote FROM {$wpdb->prefix}hello_yoda_quotes WHERE quotee LIKE '%yoda%'");
-		echo '<div class="quote">';
+		echo '<div class="quote">
+				<table style = "width:100%">';
 		foreach($results as $item){
-			echo '<th>' . $item->id . '</th>'
-				 '<th>' . $item->quotee . '</th>'
-				 '<th>' . $item->quote . '</th>'
+			echo '<th> . $item->id . </th>
+				  <th> . $item->quotee . </th>
+				  <th> . $item->quote . </th>'
 		}
 		echo '</table>
 			  </div>';
